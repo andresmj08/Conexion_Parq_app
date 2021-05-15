@@ -24,7 +24,7 @@
     // Creamos la sintaxis para el Insert con los datos parseados
     $registro = "INSERT INTO admin_sitios VALUES (NULL,'$nombres','$apellidos','$documento','$telefono','$correo','$pass','$hora')";
     
-    if((is_null($nombres) or empty($nombres) OR (is_null($apellidos) or empty($apellidos) OR (is_null($documento) or empty($documento) OR (is_null($telefono) or empty($telefono) OR (is_null($correo) or empty($correo) OR (is_null($pass) or empty($pass)){
+    if((is_null($nombres) or empty($nombres)) OR (is_null($apellidos) or empty($apellidos)) OR (is_null($documento) or empty($documento)) OR (is_null($telefono) or empty($telefono)) OR (is_null($correo) or empty($correo)) OR (is_null($pass) or empty($pass))){
         echo json_encode("Vacios");
     }
     else{
