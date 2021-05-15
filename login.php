@@ -19,22 +19,30 @@
     $clave = $objeto['pass'];
 
 
-    // Creamos la sintaxis para la consulta en la BD
-    $consulta = "SELECT id, email, password FROM admin_sitios WHERE email = '$correo' AND password = '$clave'";
-    
-    // Ejecutamos la cadena
-    $validacion = $conexion_bd->query($consulta);
-
-    if($validacion->num_rows > 0){
-        while($row[] = $validacion->fetch_assoc()){
-            $tem = $row;
-        }
-        echo json_encode("Correcto");
+    // Validaciones de Campos vacios
+    if((is_null($correo) or empty($correo)) OR (is_null($clave) or empty($clave))){
+        echo json_encode("Vacios");
     }
-    else{   
-        echo json_encode("Incorrecto");
-    };  
+    else{
+
     
+            // Creamos la sintaxis para la consulta en la BD
+            $consulta = "SELECT id, email, password FROM admin_sitios WHERE email = '$correo' AND password = '$clave'";
+            
+            // Ejecutamos la cadena
+            $validacion = $conexion_bd->query($consulta);
+            
+            if($validacion->num_rows > 0){
+                while($row[] = $validacion->fetch_assoc()){
+                    $tem = $row;
+                }
+                echo json_encode("Correcto");
+            }
+            else{   
+                echo json_encode("Incorrecto");
+            };  
+            
+        };
     
 
 ?>
