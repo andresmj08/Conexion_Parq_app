@@ -12,7 +12,7 @@
 
     function conectar(){
         $user_bd = 'root';
-        $password_bd = '';
+        $password_bd = ''; // parq_pereira
         $server_bd = 'localhost';
         $bd_name = 'parq_app';
 

@@ -13,7 +13,13 @@
     $objeto = json_decode($json, true);
 
     // Creamos Variables para los parametros recibidos
-    $matricula = $objeto['matricula'];
+
+    if(is_null($$objeto['matricula']) or empty($$objeto['matricula'])){
+        $matricula = 0;
+    }else{
+        $matricula = $objeto['matricula'];
+    }
+    
     $nombres = $objeto['nombres'];
     $nit = $objeto['nit'];
     $direccion = $objeto['direccion'];
@@ -32,7 +38,7 @@
 
 
     // Validaciones de CAmpos Vacios
-    if((is_null($matricula) or empty($matricula)) or (is_null($nombres) or empty($nombres)) or (is_null($nit) or empty($nit)) or (is_null($direccion) or empty($direccion)) or (is_null($latitud_map) or empty($latitud_map)) or (is_null($longitud_map) or empty($longitud_map)) or (is_null($valor_carro) or empty($valor_carro)) or (is_null($valor_moto) or empty($valor_moto))){
+    if( (is_null($nombres) or empty($nombres)) or (is_null($nit) or empty($nit)) or (is_null($direccion) or empty($direccion)) or (is_null($latitud_map) or empty($latitud_map)) or (is_null($longitud_map) or empty($longitud_map)) or (is_null($valor_carro) or empty($valor_carro)) or (is_null($valor_moto) or empty($valor_moto))){
         echo json_encode("Vacios");
     }
     else{
