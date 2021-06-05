@@ -22,6 +22,8 @@
     $valor_carro = $objeto['valor_carro'];
     $valor_moto = $objeto['valor_moto'];
     $estado = 1;
+    $apertura = $objeto['apertura'];
+    $cierre = $objeto['cierre'];
     $hora = date('Y-m-d H:i:s');
 
     
@@ -35,7 +37,7 @@
     }
     else{
             // Creamos la sintaxis para el Insert con los datos parseados
-            $registro = "INSERT INTO sitios VALUES (NULL,'$matricula','$nombres','$nit','$direccion','$latitud_map','$longitud_map',1,'$hora',1, 0)";
+            $registro = "INSERT INTO sitios VALUES (NULL,'$matricula','$nombres','$nit','$direccion','$latitud_map','$longitud_map',1,'$hora',1, 0, '$apertura', '$cierre')";
             
             // Ejecutamos el Query
             $almacenar_registro = $conexion_bd->query($registro);
