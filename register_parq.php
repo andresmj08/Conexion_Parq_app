@@ -32,6 +32,16 @@
     $apertura = $objeto['apertura'];
     $cierre = $objeto['cierre'];
     $hora = date('Y-m-d H:i:s');
+    
+
+
+    $servicios_adicionales = $objeto['servicios'];
+
+    if(is_null($servicios_adicionales) or empty($servicios_adicionales)){
+        $servicios = ' ';
+    }else{
+        $servicios = $servicios_adicionales;
+    }
 
 
     $existe_matricula = 0;
@@ -96,7 +106,7 @@
         }
         else {
                 // Creamos la sintaxis para el Insert con los datos parseados
-                $registro = "INSERT INTO sitios VALUES (NULL,'$matricula','$nombres','$nit','$direccion','$latitud_map','$longitud_map',1,'$hora',1, $estado, '$apertura', '$cierre')";
+                $registro = "INSERT INTO sitios VALUES (NULL,'$matricula','$nombres','$nit','$direccion','$latitud_map','$longitud_map',1,'$hora',1, $estado, '$apertura', '$cierre', '$servicios')";
     
                 // Ejecutamos el Query
                 $almacenar_registro = $conexion_bd->query($registro);
