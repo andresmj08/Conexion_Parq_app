@@ -13,22 +13,25 @@
     $objeto = json_decode($json, true);
 
     // Creamos Variables para los parametros recibidos
-    $id_parq = $objeto['id_parq'];
+    $id_admin = $objeto['id_admin'];
 
 
     
     // Creamos la sintaxis para el la consulta
     
 
-    $consultar_parq = "SELECT id, nombre, registrado, DATE_FORMAT(hora_apertura, '%h:%i %p') AS apertura, DATE_FORMAT(hora_cierre, '%h:%i %p') AS cierre, servicios, id_estado AS estado,
-                            (SELECT valor FROM tarifas WHERE id_tipo_vehiculo = 1 AND id_sitio =  '$id_parq') AS hora_carro,
-                            (SELECT valor FROM tarifas WHERE id_tipo_vehiculo = 2 AND id_sitio =  '$id_parq') AS hora_moto
-                        FROM  sitios WHERE id =  '$id_parq'";
+    $consultar_parqs = "SELECT  ST.id,  ST.nombre,  ST.registrado, DATE_FORMAT( ST.hora_apertura, '%h:%i %p') AS apertura, DATE_FORMAT( ST.hora_cierre, '%h:%i %p') AS cierre,  ST.id_estado AS estado, TFC.valor AS hora_carro, TFM.valor AS hora_moto
+    FROM  
+        sitios AS ST
+            INNER JOIN
+        (SELECT id_sitio,valor FROM tarifas WHERE id_tipo_vehiculo = 1) AS TFC ON TFC.id_sitio = ST.id
+            INNER JOIN
+        (SELECT id_sitio,valor FROM tarifas WHERE id_tipo_vehiculo = 2) AS TFM ON TFM.id_sitio = ST.id";
     // Ejecutamos el Query
-    $ejecucion = $conexion_bd->query($consultar_parq);
+    $ejecucion = $conexion_bd->query($consultar_parqs);
 
     if($ejecucion -> num_rows > 0){
-        while($row = $ejecucion -> fetch_assoc()){
+        while($row[] = $ejecucion -> fetch_assoc()){
             $registro_principal = $row;
         }  
         
