@@ -3,7 +3,7 @@
     $conexion_bd = conectar();
 
 
-    $consulta_simple = "SELECT id,nombre,latitud_map, longitud_map FROM sitios";
+    $consulta_simple = "SELECT id,nombre,latitud_map, longitud_map FROM sitios WHERE id_estado";
 
     $resultado_consulta_simple = $conexion_bd->query($consulta_simple);
 
