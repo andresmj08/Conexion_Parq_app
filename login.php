@@ -27,16 +27,16 @@
 
     
             // Creamos la sintaxis para la consulta en la BD
-            $consulta = "SELECT id, email, password FROM admin_sitios WHERE email = '$correo' AND password = '$clave'";
+            $consulta = "SELECT id, nombres FROM admin_sitios WHERE email = '$correo' AND password = '$clave'";
             
             // Ejecutamos la cadena
             $validacion = $conexion_bd->query($consulta);
             
             if($validacion->num_rows > 0){
-                while($row[] = $validacion->fetch_assoc()){
-                    $tem = $row;
+                while($row = $validacion->fetch_assoc()){
+                    $info_admin = $row;
                 }
-                echo json_encode("Correcto");
+                echo json_encode($info_admin);
             }
             else{   
                 echo json_encode("Incorrecto");
