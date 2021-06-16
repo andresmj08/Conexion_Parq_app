@@ -19,6 +19,9 @@
     $clave = $objeto['pass'];
 
 
+    $clave_encrypt = md5($clave);
+
+
     // Validaciones de Campos vacios
     if((is_null($correo) or empty($correo)) OR (is_null($clave) or empty($clave))){
         echo json_encode("Vacios");
@@ -27,7 +30,7 @@
 
     
             // Creamos la sintaxis para la consulta en la BD
-            $consulta = "SELECT id, nombres FROM admin_sitios WHERE email = '$correo' AND password = '$clave'";
+            $consulta = "SELECT id, nombres FROM admin_sitios WHERE email = '$correo' AND password = '$clave_encrypt'";
             
             // Ejecutamos la cadena
             $validacion = $conexion_bd->query($consulta);
