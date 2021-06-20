@@ -23,15 +23,28 @@
     $documento = $objeto['documento'];
     $telefono = $objeto['telefono'];
     $email = $objeto['email'];
+    $pass = $objeto['pass'];
 
 
-
-    // Creamos la sintaxis para actualizar el registro en la BD
+    if(is_null($pass)){
+            // Creamos la sintaxis para actualizar el registro en la BD sin pass
             $update_admin_info = "UPDATE admin_sitios SET nombres = '$nombres', apellidos = '$apellidos', documento= '$documento', telefono = '$telefono', email = '$email' WHERE id  = '$id_admin'";
                         
             // Ejecutamos la cadena
             $validacion = $conexion_bd->query($update_admin_info);
             
+    }else{
+        
+        $pass_encrypt = md5($pass);
+
+        // Creamos la sintaxis para actualizar el registro en la BD con pass
+        $update_admin_info = "UPDATE admin_sitios SET nombres = '$nombres', apellidos = '$apellidos', documento= '$documento', telefono = '$telefono', email = '$email', password = '$pass_encrypt' WHERE id  = '$id_admin'";
+                                
+        // Ejecutamos la cadena
+        $validacion = $conexion_bd->query($update_admin_info);
+    }
+
+
             
             echo json_encode("Actualizado");
           
