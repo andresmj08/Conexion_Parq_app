@@ -20,7 +20,7 @@
     // Creamos la sintaxis para el la consulta
     
 
-    $consultar_parq = "SELECT id, nombre, registrado, DATE_FORMAT(hora_apertura, '%h:%i %p') AS apertura, DATE_FORMAT(hora_cierre, '%h:%i %p') AS cierre, servicios, id_estado AS estado,
+    $consultar_parq = "SELECT id, nombre, registrado, matricula, nit, direccion, latitud_map, longitud_map, DATE_FORMAT(hora_apertura, '%h:%i %p') AS apertura, DATE_FORMAT(hora_cierre, '%h:%i %p') AS cierre, servicios, id_estado AS estado,
                             (SELECT valor FROM tarifas WHERE id_tipo_vehiculo = 1 AND id_sitio =  '$id_parq') AS hora_carro,
                             (SELECT valor FROM tarifas WHERE id_tipo_vehiculo = 2 AND id_sitio =  '$id_parq') AS hora_moto
                         FROM  sitios WHERE id =  '$id_parq'";
