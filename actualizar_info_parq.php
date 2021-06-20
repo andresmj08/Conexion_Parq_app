@@ -29,9 +29,19 @@
     $latitud_map = $objeto['latitud_map'];
     $longitud_map = $objeto['longitud_map'];
 
+
+    // Validacion estado en app
+    if($estado == false){
+        $estado = 0;
+    }else if($estado == 1 OR $estado == true){
+        $estado = 1;
+    }
+
+
     // Validacion de Matricula (Si vacio)
     $num_matricula = $objeto['matricula'];
 
+    
     if(is_null($num_matricula) or empty($num_matricula)){
         $matricula = 0;
     }else{
