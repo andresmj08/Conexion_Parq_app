@@ -17,7 +17,7 @@
     (SELECT COUNT(*) FROM sitios WHERE registrado = 1) AS Registrado,
     (SELECT COUNT(*) FROM admin_sitios) AS Admins,
     (SELECT COUNT(*) FROM actividad) AS Actividad,
-    (SELECT COUNT(*) FROM calificaciones GROUP BY id_sitio) AS Calificaciones";
+    (SELECT COUNT(T1.Cantidad) FROM (SELECT COUNT(*) AS Cantidad FROM calificaciones GROUP BY id_sitio) AS T1) AS Calificaciones";
     // Ejecutamos el Query
     $ejecucion = $conexion_bd->query($datos_estado);
 
